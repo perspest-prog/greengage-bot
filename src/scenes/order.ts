@@ -48,7 +48,7 @@ const order = new WizardScene("OrderScene",
     deliveryButtons,
     async (ctx) => {
         const message = (ctx.message as any).text as string
-        const link = message.match(/https:\/\/dw4.co\/t\/A\/[A-Za-z0-9]{8}/)
+        const link = message.match(/https:\/\/dw4.co\/t\/A\/[A-Za-z0-9]{9}/)
 
         if (!link || link.length !== 1) {
             return ctx.reply(
