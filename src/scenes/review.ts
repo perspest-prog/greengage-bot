@@ -15,7 +15,7 @@ const review = new WizardScene("ReviewScene",
             `${reason}`,
             {
                 parse_mode: "HTML",
-                reply_markup: inlinekeyboard([
+                reply_markup: inlineKeyboard([
                     button.callback("Оформить заново", "calc")
                 ]).reply_markup
             }
