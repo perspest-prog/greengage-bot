@@ -2,11 +2,11 @@ import { Telegraf, session } from "telegraf"
 import { inlineKeyboard, button } from "telegraf/markup"
 import { SceneContext, Stage, } from "telegraf/scenes"
 
-import { calculate, order, question, answer, rates, receipt, review } from "./scenes"
+import { calculate, order, question, answer, receipt, review } from "./scenes"
 import getToken from "./utils/getToken"
 
 const bot = new Telegraf<SceneContext>(getToken())
-const scenes = new Stage([calculate, order, question as any, answer, rates, receipt, review])
+const scenes = new Stage([calculate, order, question as any, answer, receipt, review])
 
 bot.use(session())
 bot.use(scenes.middleware())
