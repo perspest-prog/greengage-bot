@@ -1,8 +1,12 @@
-import { RATES, CATEGORIES } from "../constants"
+import { env } from "node:process"
 
-const calculatePrice = (price: number, category: string): [number, number, number] => {
-    const countUSDT = Math.ceil(price / RATES.CNY_TO_USDT)
-    const itemPrice = Math.ceil(countUSDT * RATES.USDT_TO_RUB)
+import { CATEGORIES } from "../constants"
+
+const calculatePrice = async (price: number, category: string): Promise<[number, number, number]> => {
+    const { CNY_TO_USDT, USDT_TO_RUB, CNY_TO_EUR, EUR_TO_RUB } = await fetch(env.API_URL).then((res) => res.json()) as any
+
+    const countUSDT = Math.ceil(price / CNY_TO_USDT)
+    const itemPrice = Math.ceil(countUSDT * USDT_TO_RUB)
 
     const box = CATEGORIES[category]
     const deliveryPriceEconomy = Math.ceil(619 * box)
@@ -40,7 +44,7 @@ const calculatePrice = (price: number, category: string): [number, number, numbe
                 break
     }
 
-    const tax = Math.ceil((price / RATES.CNY_TO_EUR > 250 ? Math.ceil(price / RATES.CNY_TO_EUR - 200) * 0.15 * RATES.EUR_TO_RUB + 500 : 0) * 1.05)
+    const tax = Math.ceil((price / CNY_TO_EUR > 250 ? Math.ceil(price / CNY_TO_EUR - 200) * 0.15 * EUR_TO_RUB + 500 : 0) * 1.05)
 
     return [itemPrice + 573, deliveryPriceEconomy + cdek + tax, deliveryPriceExpress + weigth + cdek + tax]
 }

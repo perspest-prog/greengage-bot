@@ -1,10 +1,3 @@
-export const RATES = {
-    CNY_TO_USDT: 7.29,
-    USDT_TO_RUB: 95.99,
-    CNY_TO_EUR: 7.6,
-    EUR_TO_RUB: 95
-}
-
 export const CATEGORIES = {
     "Летняя обувь": 1.5,
     "Демисезонная обувь": 2.5,

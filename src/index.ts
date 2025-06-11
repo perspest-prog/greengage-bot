@@ -88,7 +88,6 @@ bot.start((ctx) => {
             reply_markup: inlineKeyboard([
                 [button.callback("Калькулятор", "calc")],
                 [button.url("Отзывы", "https://t.me/greenfeedback"), button.url("Связаться с поддержкой", "https://t.me/greenmngr")],
-                ["zheksnk", "vanyayep"].includes(ctx.from.username) ? [button.callback("Задать курсы", "rates")] : []
             ]).reply_markup
         }
     )

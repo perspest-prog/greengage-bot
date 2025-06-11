@@ -10,7 +10,7 @@ const categoryButtons = new Composer<WizardContext>()
 Object.keys(CATEGORIES).forEach((category, index) => {
     categoryButtons.action("cat" + index, async (ctx) => {
         (ctx.scene.state as any).category = category
-        const [shipPrice, deliveryPriceEconomy, deliveryPriceExpress] = calculatePrice((ctx.scene.state as any).price, category);
+        const [shipPrice, deliveryPriceEconomy, deliveryPriceExpress] = await calculatePrice((ctx.scene.state as any).price, category);
         (ctx.scene.state as any).shipPrice = shipPrice
         const { message_id } = await ctx.reply(
             "<i>Ура! Наконец цена\n\n</i>" + 
