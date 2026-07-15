@@ -18,7 +18,7 @@ FROM base AS production
 ENV NODE_ENV=production
 
 WORKDIR /app
-COPY package.json  .
+COPY package.json yarn.lock  ./
 
 COPY --from=build /app/dist ./dist
 
